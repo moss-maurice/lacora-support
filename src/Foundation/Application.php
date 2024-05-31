@@ -10,6 +10,8 @@ class Application extends IlluminateApplication
 
     protected $modulesPath;
 
+    protected $pluginsPath;
+
     protected $corePath;
 
     protected $coreConfigPath;
@@ -19,6 +21,7 @@ class Application extends IlluminateApplication
         parent::bindPathsInContainer();
 
         $this->instance('path.modules', $this->modulesPath());
+        $this->instance('path.plugins', $this->pluginsPath());
         $this->instance('core.path', $this->corePath());
         $this->instance('core.path.config', $this->coreConfigPath());
     }
@@ -33,6 +36,20 @@ class Application extends IlluminateApplication
         $this->modulesPath = $path;
 
         $this->instance('path.modules', $path);
+
+        return $this;
+    }
+
+    public function pluginsPath($path = '')
+    {
+        return $this->joinPaths(realpath($this->pluginsPath ?: $this->basePath('../plugins')), $path);
+    }
+
+    public function usePluginsPath($path)
+    {
+        $this->pluginsPath = $path;
+
+        $this->instance('path.plugins', $path);
 
         return $this;
     }
