@@ -8,18 +8,33 @@ class Application extends IlluminateApplication
 {
     protected $basePath;
 
+    protected $modulesPath;
+
     protected $corePath;
 
     protected $coreConfigPath;
-
-    protected $modulesPath;
 
     protected function bindPathsInContainer()
     {
         parent::bindPathsInContainer();
 
+        $this->instance('path.modules', $this->modulesPath());
         $this->instance('core.path', $this->corePath());
         $this->instance('core.path.config', $this->coreConfigPath());
+    }
+
+    public function modulesPath($path = '')
+    {
+        return $this->joinPaths(realpath($this->modulesPath ?: $this->basePath('../modules')), $path);
+    }
+
+    public function useModulesPath($path)
+    {
+        $this->modulesPath = $path;
+
+        $this->instance('path.modules', $path);
+
+        return $this;
     }
 
     public function corePath($path = '')
@@ -63,19 +78,5 @@ class Application extends IlluminateApplication
     public function resourcePath($path = '')
     {
         return $this->joinPaths(realpath($this->publicPath('resources')), $path);
-    }
-
-    public function modulesPath($path = '')
-    {
-        return $this->joinPaths(realpath($this->modulesPath ?: $this->basePath('../modules')), $path);
-    }
-
-    public function useModulesPath($path)
-    {
-        $this->modulesPath = $path;
-
-        $this->instance('path.modules', $path);
-
-        return $this;
     }
 }
