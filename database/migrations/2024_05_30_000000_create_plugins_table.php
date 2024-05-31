@@ -14,7 +14,7 @@ class CreatePluginsTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable((new Plugins)->getTable())) {
+        if (!Schema::hasTable((new Plugins)->getTable())) {
             Schema::create((new Plugins)->getTable(), function (Blueprint $table) {
                 $table->id();
                 $table->string('name');

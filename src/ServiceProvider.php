@@ -8,6 +8,6 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(realpath(__DIR__ . '/../database/migrations'));
     }
 }
