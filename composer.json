@@ -1,0 +1,36 @@
+{
+    "name": "mmaurice/lacora-support",
+    "type": "library",
+    "description": "Lacora is core-support library for Laura (&) CMF",
+    "keywords": [
+        "laura",
+        "cms",
+        "cmf",
+        "lacora",
+        "core",
+        "support",
+        "laravel",
+        "framework"
+    ],
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Moss Maurice",
+            "email": "kreexus@yandex.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lacora\\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
